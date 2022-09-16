@@ -1,4 +1,3 @@
-// const bootstrap = require('bootstrap');
 
 function getMemes(limit = 25, skip = 175) {
     let memeArr = []
@@ -23,21 +22,32 @@ function getMemes(limit = 25, skip = 175) {
 
 }
 
+function logout() {
+    localStorage.clear()
+}
 
 window.addEventListener("load", function () {
     let memes = getMemes()
+    let token = localStorage.getItem("token")
+    let current = 0
+    let skip = 175
     const img = document.getElementById("image")
-    const myModal = document.getElementById('myModal')
-    const myInput = document.getElementById('myInput')
-    const modalFormButton = document.getElementById("loginButton")
     const backBtn = document.getElementById("back")
     const nextBtn = document.getElementById("next")
-    const nextPageBtn = document.getElementById("nextPage")
-    let current = 0
-    let page = 1
-    let skip = 175
+    const linksDiv = document.getElementById("links")
 
-    console.log(memes)
+    if (token) {
+        console.log("token:", token);
+        linksDiv.innerHTML = `
+        <li class="nav-item">
+        <a class="nav-link" id="myMemesLink" href="mymemes.html">My Memes</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" id="logout" href="" onclick="logout()">Logout</a>
+        </li>`
+    } else {
+        linksDiv.innerHTML = `<a class="nav-link" id="loginLink" href="login.html">Login</a>`
+    }
 
     setTimeout(function () {
         // console.log(typeof (memes))
@@ -52,11 +62,11 @@ window.addEventListener("load", function () {
         } else {
             img.src = memes[current]
         }
-    })
+    });
 
     nextBtn.addEventListener("click", function () {
         current += 1
-        console.log(current)
+        // console.log(current)
         if (current >= memes.length - 1) {
             let limit = 25
             skip += 25
@@ -64,25 +74,13 @@ window.addEventListener("load", function () {
             setTimeout(function () {
                 memes = memes.concat(moreMemes)
             }, 1000)
-            console.log(memes)
-        }
+            // console.log(memes)
+        };
 
         if (current !== memes.length) {
-            img.src = memes[current]
-        }
-    })
+            img.src = memes[current];
+        };
 
-    myModal.addEventListener('shown.bs.modal', () => {
-        myInput.focus()
-    })
+    });
 
-    modalFormButton.addEventListener("click", function (event) {
-        const email = document.querySelector("input[name=email]").value
-        const password = document.querySelector("input[name=password]").value
-        const headers = { "email": email, "password": password }
-        console.log(headers)
-        event.stopPropagation()
-        event.preventDefault()
-    })
-
-})
+});

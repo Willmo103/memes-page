@@ -3,6 +3,7 @@ window.addEventListener("load", () => {
 
     form.addEventListener("submit", (event) => {
         event.preventDefault()
+
         let email = document.querySelector("input[name=email]").value
         let password = document.querySelector("input[name=password]").value
         let newUser = document.querySelector("input[name=newUser]")
@@ -22,7 +23,14 @@ window.addEventListener("load", () => {
                 return response.json();
             })
             .then(function (data) {
-                console.log(data)
+                if (data.access_token) {
+                    console.log(data.access_token)
+                    localStorage.setItem("token", data.access_token)
+                    window.open("index.html")
+                }
+                else {
+                    window.alert("Invalid Login")
+                }
             });
     })
 })
