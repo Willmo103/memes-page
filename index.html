@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css" />
+    <script src="index.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memes</title>
+</head>
+
+<body>
+    <nav class=" navbar navbar-dark navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">MEMES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#login-modal" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="mymemes.html">My Memes</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container center-block text-center">
+        <div class="col m-3 center-block" style="height: 500px; width: 500px align-items: center;">
+            <img src="" class="img-fluid" alt="oopsie.jpg" id="image" style="max-height:500px; max-width: 500px;">
+        </div>
+        <div class="center-block">
+            <button class="back btn btn-outline-primary m-2" id="back">Back</button>
+            <button class="save btn btn-outline-primary m-2" id="save">Save</button>
+            <button class="next btn btn-outline-primary m-2" id="next">Next</button>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" id="login-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" class="form" role="form">
+                    <form action="mymemes.html" method="post" role="form">
+                        <div>
+                            <label for="email" class="col-sm-2 m-3">Email</label>
+                            <input type="email" name="email" id="email" />
+                        </div>
+                        <div>
+                            <label for="password" class="col-sm-2 m-3">Password</label>
+
+                            <input type="password" name="password" id="password" />
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</body>
+
+</html>
