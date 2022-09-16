@@ -29,11 +29,11 @@ window.addEventListener("load", function () {
     const img = document.getElementById("image")
     const myModal = document.getElementById('myModal')
     const myInput = document.getElementById('myInput')
-    const modalFormSubmit = document.getElementById("modalSubmit")
+    const modalFormButton = document.getElementById("loginButton")
     const backBtn = document.getElementById("back")
     const nextBtn = document.getElementById("next")
     const nextPageBtn = document.getElementById("nextPage")
-    let current = 23
+    let current = 0
     let page = 1
     let skip = 175
 
@@ -43,7 +43,7 @@ window.addEventListener("load", function () {
         // console.log(typeof (memes))
         // console.log(memes)
         img.src = memes[current]
-    }, 500)
+    }, 1000)
 
     backBtn.addEventListener("click", function () {
         current -= 1;
@@ -63,7 +63,7 @@ window.addEventListener("load", function () {
             let moreMemes = getMemes(limit, skip)
             setTimeout(function () {
                 memes = memes.concat(moreMemes)
-            }, 500)
+            }, 1000)
             console.log(memes)
         }
 
@@ -76,12 +76,13 @@ window.addEventListener("load", function () {
         myInput.focus()
     })
 
-    modalFormSubmit.addEventListener("submit", function (event) {
-        event.preventDefault()
+    modalFormButton.addEventListener("click", function (event) {
         const email = document.querySelector("input[name=email]").value
         const password = document.querySelector("input[name=password]").value
         const headers = { "email": email, "password": password }
         console.log(headers)
+        event.stopPropagation()
+        event.preventDefault()
     })
 
 })
