@@ -1,6 +1,6 @@
 function getMemes(limit = 25, skip = 175) {
   let memeArr = [];
-  fetch(`http://192.168.1.208/memes/?limit=${limit}&skip=${skip}`, {
+  fetch(`http://192.168.1.208/memes`, {
     method: "GET",
   })
     .then(function (response) {
@@ -26,7 +26,6 @@ window.addEventListener("load", function () {
   let memes = getMemes();
   let token = localStorage.getItem("token");
   let current = 0;
-  let skip = 175;
   const img = document.getElementById("image");
   const backBtn = document.getElementById("back");
   const nextBtn = document.getElementById("next");
@@ -52,7 +51,8 @@ window.addEventListener("load", function () {
   backBtn.addEventListener("click", function () {
     current -= 1;
     if (current < 0) {
-      current = 0;
+      current = memes.length;
+      img.src = memes[current].url;
     } else {
       img.src = memes[current].url;
     }
@@ -61,12 +61,7 @@ window.addEventListener("load", function () {
   nextBtn.addEventListener("click", function () {
     current += 1;
     if (current >= memes.length - 1) {
-      let limit = 25;
-      skip += 25;
-      let moreMemes = getMemes(limit, skip);
-      setTimeout(function () {
-        memes = memes.concat(moreMemes);
-      }, 1000);
+      current = 0
     }
 
     if (current !== memes.length) {
