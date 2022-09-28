@@ -1,4 +1,4 @@
-function getMemes(limit = 25, skip = 175) {
+function getMemes() {
   let memeArr = [];
   fetch(`http://192.168.1.208/memes`, {
     method: "GET",
